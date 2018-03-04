@@ -7,12 +7,12 @@ BUILD_BASE_DIR=$(pwd)
 mkdir dist
 mkdir json
 
-for target in plugins/*.sh; do
+cd plugins
+
+for target in *; do
     echo $target
-    . $target
-    mkdir $PLUGIN_ID
-    
-    pushd $PLUGIN_ID
+    pushd $target
+    . $target.sh
     
     wget $PLUGIN_TGZ_URL
     tar zxf $(basename $PLUGIN_TGZ_URL)
@@ -21,7 +21,6 @@ for target in plugins/*.sh; do
     sed -i -e "s/gitbucketVersion *:= *\"[0-9.]*\"/gitbucketVersion := \"${GITBUCKET_VERSION}\"/" build.sbt
     sbt assembly
 
-    [ -e ${PLUGIN_JAR} ]
     mv ${PLUGIN_JAR} ${BUILD_BASE_DIR}/dist/
 
     cat <<EOS > ${BUILD_BASE_DIR}/json/${PLUGIN_ID}.json
