@@ -14,7 +14,7 @@ for target in plugins/*.sh; do
     pushd $PLUGIN_NAME
     
     wget $PLUGIN_TGZ_URL
-    tar zxvf $(basename $PLUGIN_TGZ_URL)
+    tar zxf $(basename $PLUGIN_TGZ_URL)
     cd $PLUGIN_SRC_DIR
 
     sed -i -e "s/gitbucketVersion *:= *\"[0-9.]*\"/gitbucketVersion := \"${GITBUCKET_VERSION}\"/" build.sbt
