@@ -11,4 +11,4 @@ for fn in glob.glob("json/*.json"):
         merged.append(json.load(f))
 
 with open("dist/plugins.json", "w", encoding="utf-8") as f:
-    json.dump(f)
+    json.dump(merged, f)
