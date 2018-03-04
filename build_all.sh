@@ -8,9 +8,9 @@ echo $HOME
 mkdir dist
 mkdir json
 
-for build_target in plugins/*.sh; do
-    echo $build_target
-    . $build_target
+for target in plugins/*.sh; do
+    echo $target
+    . $target
     mkdir $PLUGIN_NAME
     
     pushd $PLUGIN_NAME
@@ -26,15 +26,15 @@ for build_target in plugins/*.sh; do
 
     popd
 
-    cp ${build_target}/${PLUGIN_SRC_DIR}/${PLUGIN_JAR_PATH} dist/
-    cat <<EOS > json/${build_target}.json
+    cp ${PLUGIN_NAME}/${PLUGIN_SRC_DIR}/${PLUGIN_JAR_PATH} dist/
+    cat <<EOS > json/${target}.json
 {
     name: ${PLUGIN_NAME},
     version: ${PLUGIN_VERSION},
     filename: ${PLUGIN_JAR_FILENAME}
 }
 EOS
-    cat json/${build_target}.json
+    cat json/${target}.json
 
 done
 
