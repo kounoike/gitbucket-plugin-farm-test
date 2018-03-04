@@ -2,9 +2,6 @@
 
 GITBUCKET_VERSION=4.20.0
 
-pwd
-echo $HOME
-
 mkdir dist
 mkdir json
 
@@ -27,14 +24,15 @@ for target in plugins/*.sh; do
     popd
 
     cp ${PLUGIN_NAME}/${PLUGIN_SRC_DIR}/${PLUGIN_JAR_PATH} dist/
-    cat <<EOS > json/${target}.json
+    cat <<EOS > json/${PLUGIN_NAME}.json
 {
     name: ${PLUGIN_NAME},
     version: ${PLUGIN_VERSION},
     filename: ${PLUGIN_JAR_FILENAME}
 }
 EOS
-    cat json/${target}.json
+    ls json
+    cat json/${PLUGIN_NAME}.json
 
 done
 
