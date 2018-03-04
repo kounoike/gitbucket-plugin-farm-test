@@ -19,7 +19,7 @@ for target in plugins/*.sh; do
     sed -i -e "s/gitbucketVersion *:= *\"[0-9.]*\"/gitbucketVersion := \"${GITBUCKET_VERSION}\"/" build.sbt
     sbt assembly
 
-    ls target/scala-2.12
+    [ -e ${PLUGIN_JAR_PATH} ]
 
     popd
 
