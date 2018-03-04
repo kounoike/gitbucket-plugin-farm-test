@@ -8,11 +8,9 @@ This repository makes possible to install plugins from remote repository and les
 
 This farm requires that plugin uses [sbt-gitbucket-plugin](https://github.com/gitbucket/sbt-gitbucket-plugin). Please use it.
 
-Please create PR it contains:
+Please create PR it contains `plugins/_plugin_name_/_plugin_name_.sh`
 
-- plugins/_name_/_name_.sh (required)
-
-_name_.sh contains:
+`_plugin_name_.sh` contains:
 
 - `PLUGIN_ID`
 - `PLUGIN_NAME`
