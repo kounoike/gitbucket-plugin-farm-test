@@ -1,6 +1,8 @@
 #!/bin/bash
 
-GITBUCKET_VERSION=4.20.0
+. gitbucket_version.sh
+
+BUILD_BASE_DIR=$(pwd)
 
 mkdir dist
 mkdir json
@@ -20,11 +22,9 @@ for target in plugins/*.sh; do
     sbt assembly
 
     [ -e ${PLUGIN_JAR_PATH} ]
+    mv ${PLUGIN_JAR_PATH} ${BUILD_BASE_DIR}/dist/
 
-    popd
-
-    cp ${PLUGIN_ID}/${PLUGIN_SRC_DIR}/${PLUGIN_JAR_PATH} dist/
-    cat <<EOS > json/${PLUGIN_ID}.json
+    cat <<EOS > ${BUILD_BASE_DIR}/json/${PLUGIN_ID}.json
 {
     "id": "${PLUGIN_ID}",
     "name": "${PLUGIN_NAME}",
@@ -39,9 +39,6 @@ for target in plugins/*.sh; do
     "default": ${PLUGIN_IS_DEFAULT}
 }
 EOS
-    ls json
-    cat json/${PLUGIN_ID}.json
+    popd
 
 done
-
-ls dist

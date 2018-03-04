@@ -8,6 +8,7 @@ cache:
 script:
   - bash -xe ./build_all.sh
   - python3 merge_json.py
+  - ls dist
   - cat dist/plugins.json
 
 deploy:
