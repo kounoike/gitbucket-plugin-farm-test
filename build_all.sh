@@ -26,9 +26,9 @@ for target in plugins/*.sh; do
     cp ${PLUGIN_NAME}/${PLUGIN_SRC_DIR}/${PLUGIN_JAR_PATH} dist/
     cat <<EOS > json/${PLUGIN_NAME}.json
 {
-    name: ${PLUGIN_NAME},
-    version: ${PLUGIN_VERSION},
-    filename: ${PLUGIN_JAR_FILENAME}
+    name: "${PLUGIN_NAME}",
+    version: "${PLUGIN_VERSION}",
+    filename: "${PLUGIN_JAR_FILENAME}"
 }
 EOS
     ls json
