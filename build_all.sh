@@ -21,8 +21,8 @@ for target in plugins/*.sh; do
     sed -i -e "s/gitbucketVersion *:= *\"[0-9.]*\"/gitbucketVersion := \"${GITBUCKET_VERSION}\"/" build.sbt
     sbt assembly
 
-    [ -e ${PLUGIN_JAR_PATH} ]
-    mv ${PLUGIN_JAR_PATH} ${BUILD_BASE_DIR}/dist/
+    [ -e ${PLUGIN_JAR} ]
+    mv ${PLUGIN_JAR} ${BUILD_BASE_DIR}/dist/
 
     cat <<EOS > ${BUILD_BASE_DIR}/json/${PLUGIN_ID}.json
 {
@@ -33,7 +33,7 @@ for target in plugins/*.sh; do
         {
             "version": "${PLUGIN_VERSION}",
             "range": ">=${GITBUCKET_VERSION}",
-            "url": "${FARM_BASE_URL}/${GITBUCKET_VERSION}/${PLUGIN_JAR_FILENAME}"
+            "url": "${FARM_BASE_URL}/${GITBUCKET_VERSION}/$(basename ${PLUGIN_JAR})"
         }
     ],
     "default": ${PLUGIN_IS_DEFAULT}
