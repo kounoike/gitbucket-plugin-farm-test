@@ -36,3 +36,4 @@ EOS
 
 done
 
+ls dist

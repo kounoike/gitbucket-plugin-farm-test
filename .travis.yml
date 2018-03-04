@@ -7,3 +7,5 @@ cache:
     - "$HOME/.sbt"
 script:
   - bash -xe ./build_all.sh
+  - python merge_json.py
+  - cat dist/plugins.json
