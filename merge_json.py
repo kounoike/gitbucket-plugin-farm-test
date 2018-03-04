@@ -6,7 +6,7 @@ import glob
 
 merged = []
 
-for fn in "json/*.json":
+for fn in glob.glob("json/*.json"):
     with open(fn) as f:
         merged.append(json.load(f))
 
