@@ -6,4 +6,4 @@ cache:
     - "$HOME/.ivy2"
     - "$HOME/.sbt"
 script:
-  - bash ./build_all.sh
+  - bash -e ./build_all.sh
