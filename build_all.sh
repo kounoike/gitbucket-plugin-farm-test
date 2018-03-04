@@ -8,9 +8,9 @@ mkdir json
 for target in plugins/*.sh; do
     echo $target
     . $target
-    mkdir $PLUGIN_NAME
+    mkdir $PLUGIN_ID
     
-    pushd $PLUGIN_NAME
+    pushd $PLUGIN_ID
     
     wget $PLUGIN_TGZ_URL
     tar zxf $(basename $PLUGIN_TGZ_URL)
@@ -23,16 +23,24 @@ for target in plugins/*.sh; do
 
     popd
 
-    cp ${PLUGIN_NAME}/${PLUGIN_SRC_DIR}/${PLUGIN_JAR_PATH} dist/
-    cat <<EOS > json/${PLUGIN_NAME}.json
+    cp ${PLUGIN_ID}/${PLUGIN_SRC_DIR}/${PLUGIN_JAR_PATH} dist/
+    cat <<EOS > json/${PLUGIN_ID}.json
 {
+    "id": "${PLUGIN_ID}",
     "name": "${PLUGIN_NAME}",
-    "version": "${PLUGIN_VERSION}",
-    "filename": "${PLUGIN_JAR_FILENAME}"
+    "description": "${PLUGIN_DESCRIPTION}",
+    "versions": [
+        {
+            "version": "${PLUGIN_VERSION}",
+            "range": ">=${GITBUCKET_VERSION}",
+            "url": "${FARM_BASE_URL}/${GITBUCKET_VERSION}/${PLUGIN_JAR_FILENAME}"
+        }
+    ],
+    "default": ${PLUGIN_IS_DEFAULT}
 }
 EOS
     ls json
-    cat json/${PLUGIN_NAME}.json
+    cat json/${PLUGIN_ID}.json
 
 done
 
