@@ -8,9 +8,9 @@ echo $HOME
 mkdir dist
 mkdir json
 
-for target in plugins/*.sh; do
-    echo $target
-    . $target
+for build_target in plugins/*.sh; do
+    echo $build_target
+    . $build_target
     mkdir $PLUGIN_NAME
     
     pushd $PLUGIN_NAME
@@ -22,19 +22,19 @@ for target in plugins/*.sh; do
     sed -i -e "s/gitbucketVersion *:= *\"[0-9.]*\"/gitbucketVersion := \"${GITBUCKET_VERSION}\"/" build.sbt
     sbt assembly
 
-    ls target/scala-2.12
+    ls build_target/scala-2.12
 
     popd
 
-    cp ${target}/${PLUGIN_SRC_DIR}/${PLUGIN_JAR_PATH} dist/
-    cat <<EOS > json/${target}.json
+    cp ${build_target}/${PLUGIN_SRC_DIR}/${PLUGIN_JAR_PATH} dist/
+    cat <<EOS > json/${build_target}.json
 {
     name: ${PLUGIN_NAME},
     version: ${PLUGIN_VERSION},
     filename: ${PLUGIN_JAR_FILENAME}
 }
 EOS
-    cat json/${target}.json
+    cat json/${build_target}.json
 
 done
 
