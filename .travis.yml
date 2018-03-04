@@ -1,0 +1,9 @@
+language: scala
+jdk:
+- oraclejdk8
+cache:
+  directories:
+    - "$HOME/.ivy2"
+    - "$HOME/.sbt"
+script:
+  - ./build_all.sh
