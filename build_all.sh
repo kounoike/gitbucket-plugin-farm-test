@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BUILD_DATE=$(date --iso-8601=seconds)
+BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 echo $BUILD_DATE
 
 . gitbucket_version.sh
