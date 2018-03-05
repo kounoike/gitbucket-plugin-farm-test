@@ -1,5 +1,7 @@
 #!/bin/sh
 
+PLUGIN_BUILD_ENABLED=true
+
 PLUGIN_ID=ci
 PLUGIN_NAME="CI Plugin"
 PLUGIN_DESCRIPTION="This plugin adds simple CI functionality to GitBucket."

@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# test for PLUGIN_BUILD_ENABLED
+PLUGIN_BUILD_ENABLED=false
+
 PLUGIN_ID=maven-repository
 PLUGIN_NAME="Maven Repsitory Plugin"
 PLUGIN_DESCRIPTION="Host Maven repository on GitBucket."

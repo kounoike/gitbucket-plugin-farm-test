@@ -14,6 +14,7 @@ Please create PR to this repository. it contains `plugins/_plugin_name_/_plugin_
 
 |var_name|description|example|
 |-----------|------------|----------|
+|`PLUGIN_BUILD_ENABLED`|true if build this plugin on farm|true|
 |`PLUGIN_ID`     |`PluginId` in `Plugin.scala`|gist|
 |`PLUGIN_NAME`|`PluginName` in `Plugin.scala`|Gist Plugin|
 |`PLUGIN_DESCRIPTION`|`description` in `Plugin.scala`|Provides Gist feature on GitBucket.|

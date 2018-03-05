@@ -1,5 +1,7 @@
 #!/bin/sh
 
+PLUGIN_BUILD_ENABLED=true
+
 PLUGIN_ID=gist
 PLUGIN_NAME="Gist Plugin"
 PLUGIN_DESCRIPTION="Provides Gist feature on GitBucket."

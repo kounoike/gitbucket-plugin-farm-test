@@ -15,6 +15,8 @@ for target in *; do
     pushd $target
     . $target.sh
     
+    [ "$PLUGIN_BUILD_ENABLED" != "true" ] && continue
+
     wget $PLUGIN_SRC_TGZ_URL
     tar zxf $(basename $PLUGIN_SRC_TGZ_URL)
     cd $PLUGIN_SRC_DIR
