@@ -2,8 +2,6 @@
 
 . gitbucket_version.sh
 
-BUILD_BASE_DIR=$(pwd)
-
 mkdir dist
 mkdir json
 
@@ -21,9 +19,9 @@ for target in *; do
     sed -i -e "s/gitbucketVersion *:= *\"[0-9.]*\"/gitbucketVersion := \"${GITBUCKET_VERSION}\"/" build.sbt
     sbt assembly
 
-    mv ${PLUGIN_JAR} ${BUILD_BASE_DIR}/dist/
+    mv ${PLUGIN_JAR} ${TRAVIS_BUILD_DIR}/dist/
 
-    cat <<EOS > ${BUILD_BASE_DIR}/json/${PLUGIN_ID}.json
+    cat <<EOS > ${TRAVIS_BUILD_DIR}/json/${PLUGIN_ID}.json
 {
     "id": "${PLUGIN_ID}",
     "name": "${PLUGIN_NAME}",
@@ -39,5 +37,4 @@ for target in *; do
 }
 EOS
     popd
-
 done
