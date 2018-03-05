@@ -1,7 +1,6 @@
 #!/bin/sh
 
-# test for PLUGIN_BUILD_ENABLED
-PLUGIN_BUILD_ENABLED=false
+PLUGIN_BUILD_ENABLED=true
 
 PLUGIN_ID=maven-repository
 PLUGIN_NAME="Maven Repsitory Plugin"
