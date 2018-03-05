@@ -6,7 +6,7 @@ This repository makes possible to install plugins from remote repository and les
 
 ## adding new plugin
 
-This farm requires that plugin uses [sbt-gitbucket-plugin](https://github.com/gitbucket/sbt-gitbucket-plugin). Please use it.
+This farm requires that plugin uses [sbt-gitbucket-plugin](https://github.com/gitbucket/sbt-gitbucket-plugin). Please use it and create tag with plugin version.
 
 Please create PR it contains `plugins/_plugin_name_/_plugin_name_.sh`
 
@@ -27,7 +27,7 @@ Please create PR it contains `plugins/_plugin_name_/_plugin_name_.sh`
 
 ## update your plugin
 
-Please create PR with update `PLUGIN_VERSION`, `PLUGIN_TAG_NAME` etc.
+Please create new tag and create PR with update `PLUGIN_VERSION`, `PLUGIN_TAG_NAME` etc.
 
 # for GitBucket developper
 
