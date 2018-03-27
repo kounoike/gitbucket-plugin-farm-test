@@ -21,7 +21,7 @@ for target in *; do
     tar zxf $(basename $PLUGIN_SRC_TGZ_URL)
     cd $PLUGIN_SRC_DIR
 
-    sed -i -e "s/gitbucketVersion *:= *\"[0-9.]*\"/gitbucketVersion := \"${GITBUCKET_VERSION}\"/" build.sbt
+    sed -i -e "s/\\s*gitbucketVersion\\s*:=.*/gitbucketVersion := \"${GITBUCKET_VERSION}\"/" build.sbt
     sbt assembly
 
     mv ${PLUGIN_JAR} ${TRAVIS_BUILD_DIR}/dist/
