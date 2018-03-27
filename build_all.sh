@@ -15,17 +15,32 @@ for target in *; do
     pushd $target
     . $target.sh
     
+    # check PLUGIN_BUILD_ENABLED
     [ "$PLUGIN_BUILD_ENABLED" != "true" ] && continue
 
+    # get source
     wget $PLUGIN_SRC_TGZ_URL
     tar zxf $(basename $PLUGIN_SRC_TGZ_URL)
     cd $PLUGIN_SRC_DIR
 
+    # change gitbucketVersion
     sed -i -e "s/\\s*gitbucketVersion\\s*:=.*/gitbucketVersion := \"${GITBUCKET_VERSION}\"/" build.sbt
+
+    # change scalaVersion
+    sed -i -e "s/\\s*scalaVersion\\s*:=.*/scalaVersion := \"${SCALA_VERSION}\"/" build.sbt
+
+    # change sbt.version
+    if [ -e project/build.properties ]; then
+        sed -i -e "s/sbt.version\\s*=.*/sbt.version = ${SBT_VERSION}/" project/build.properties
+    fi
+
+    # build plugin
     sbt assembly
 
+    # copy artifact
     mv ${PLUGIN_JAR} ${TRAVIS_BUILD_DIR}/dist/
 
+    # make json flagment
     cat <<EOS > ${TRAVIS_BUILD_DIR}/json/${PLUGIN_ID}.json
 {
     "id": "${PLUGIN_ID}",
