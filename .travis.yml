@@ -8,8 +8,6 @@ cache:
     - "$HOME/.sbt"
 
 before_script:
-  - which jq
-  - jq --version
   - bash -xe ./run_gitbucket.sh
 
 script:
