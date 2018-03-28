@@ -53,9 +53,8 @@ for target in *; do
     fi
 
     # check plugin list api
-    # TODO: check this plugin successfully loaded or not
     sleep 5 # wait for load plugin
-    curl http://localhost:8080/api/v3/gitbucket/plugins
+    curl -sS http://localhost:8080/api/v3/gitbucket/plugins | jq -e "'.[] | select(.id == \"${PLUGIN_ID}\")"
 
     # make json flagment
     cat <<EOS > ${TRAVIS_BUILD_DIR}/json/${PLUGIN_ID}.json
