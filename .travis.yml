@@ -7,6 +7,9 @@ cache:
     - "$HOME/.ivy2"
     - "$HOME/.sbt"
 
+before_script:
+  - bash -xe ./run_gitbucket.sh
+
 script:
   - bash -xe ./build_all.sh
 

@@ -43,11 +43,17 @@ for target in *; do
 
     # copy artifact
     if [ -e ${PLUGIN_JAR} ]; then
+        cp -f ${PLUGIN_JAR} ${HOME}/.gitbucket/plugins/
         mv ${PLUGIN_JAR} ${TRAVIS_BUILD_DIR}/dist/
     else
         ls -R target
         exit 1
     fi
+
+    # check plugin list api
+    # TODO: check this plugin successfully loaded or not
+    sleep 5 # wait for load plugin
+    curl http://localhost:8080/api/v3/gitbucket/plugins
 
     # make json flagment
     cat <<EOS > ${TRAVIS_BUILD_DIR}/json/${PLUGIN_ID}.json
