@@ -17,6 +17,7 @@ after_script:
   - python3 merge_json.py
   - ls dist
   - cat dist/plugins.json
+  - cat ~/gitbucket.log
 
 deploy:
   provider: releases
