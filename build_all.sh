@@ -42,8 +42,10 @@ for target in *; do
     sbt assembly
 
     # copy artifact
+    PLUGINS_DIR=${HOME}/.gitbucket/plugins/
     if [ -e ${PLUGIN_JAR} ]; then
-        cp -f ${PLUGIN_JAR} ${HOME}/.gitbucket/plugins/
+        [ -d ${PLUGINS_DIR} ] || mkdir -p ${PLUGINS_DIR}
+        cp -f ${PLUGIN_JAR} ${PLUGINS_DIR}
         mv ${PLUGIN_JAR} ${TRAVIS_BUILD_DIR}/dist/
     else
         ls -R target
