@@ -12,7 +12,7 @@ tar zxf $(basename $GITBUCKET_TGZ_URL)
 pushd $GITBUCKET_SRC_DIR
 
 sbt executable
-java -jar target/scala-2.12/gitbucket*.war &
+nohup java -jar target/scala-2.12/gitbucket*.war &
 
 popd
 
