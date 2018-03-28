@@ -4,8 +4,10 @@ jdk:
 
 cache:
   directories:
-    - "$HOME/.ivy2"
-    - "$HOME/.sbt"
+    - "$HOME/.ivy2/cache"
+    - "$HOME/.sbt/boot"
+    - "$HOME/.sbt/launchers"
+    - "$HOME/.coursier"
 
 before_script:
   - bash -xe ./run_gitbucket.sh
