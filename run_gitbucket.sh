@@ -11,10 +11,8 @@ tar zxf $(basename $GITBUCKET_TGZ_URL)
 
 pushd $GITBUCKET_SRC_DIR
 
-#sbt executable
-#nohup java -jar target/scala-2.12/gitbucket*.war >$HOME/gitbucket.log 2>&1 < /dev/null &
-sbt compile
-echo "" | nohup sbt jetty:start >$HOME/gitbucket.log 2>&1 &
+sbt executable
+nohup java -jar target/executable/gitbucket.war >$HOME/gitbucket.log 2>&1 < /dev/null &
 
 sleep 10
 cat ~/gitbucket.log
