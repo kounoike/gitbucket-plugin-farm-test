@@ -34,11 +34,20 @@ for target in *; do
         sed -i -e "s/sbt.version\\s*=.*/sbt.version = ${SBT_VERSION}/" project/build.properties
     fi
 
+    # debug
+    cat build.sbt
+    cat project/build.properties
+
     # build plugin
     sbt assembly
 
     # copy artifact
-    mv ${PLUGIN_JAR} ${TRAVIS_BUILD_DIR}/dist/
+    if [ -e ${PLUGIN_JAR} ]; then
+        mv ${PLUGIN_JAR} ${TRAVIS_BUILD_DIR}/dist/
+    else
+        ls -R target
+        exit 1
+    fi
 
     # make json flagment
     cat <<EOS > ${TRAVIS_BUILD_DIR}/json/${PLUGIN_ID}.json
