@@ -2,6 +2,9 @@
 
 PLUGIN_BUILD_ENABLED=true
 
+PLUGIN_REPOSITORY_OWNER=gitbucket
+PLUGIN_REPOSITORY_NAME=gitbucket-emoji-plugin
+
 PLUGIN_ID=emoji
 PLUGIN_NAME="Emoji Plugin"
 PLUGIN_DESCRIPTION="Provides Emoji support for GitBucket."
@@ -10,9 +13,6 @@ PLUGIN_VERSION=4.5.0
 PLUGIN_TAG_NAME=master
 
 PLUGIN_IS_DEFAULT=false
-
-PLUGIN_REPOSITORY_OWNER=gitbucket
-PLUGIN_REPOSITORY_NAME=gitbucket-pages-plugin
 
 PLUGIN_PROJECT_URL=https://github.com/${PLUGIN_REPOSITORY_OWNER}/${PLUGIN_REPOSITORY_NAME}
 
