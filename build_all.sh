@@ -1,5 +1,6 @@
 #!/bin/bash
 
+FARM_BASE_URL=https://github.com/kounoike/gitbucket-plugin-farm-test/releases/download
 BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 echo $BUILD_DATE
 
