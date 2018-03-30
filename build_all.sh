@@ -67,7 +67,8 @@ for target in *; do
         {
             "version": "${PLUGIN_VERSION}",
             "range": ">=${GITBUCKET_VERSION}",
-            "url": "${FARM_BASE_URL}/${GITBUCKET_VERSION}/$(basename ${PLUGIN_JAR})"
+            "url": "${FARM_BASE_URL}/${GITBUCKET_VERSION}/$(basename ${PLUGIN_JAR})",
+            "jarFileName": "$(basename ${PLUGIN_JAR})"
         }
     ],
     "default": ${PLUGIN_IS_DEFAULT}
