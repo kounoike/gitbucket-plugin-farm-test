@@ -13,10 +13,9 @@ before_script:
   - bash -xe ./run_gitbucket.sh
 
 script:
-  - bash -xe ./build_all.sh
+  - bash -xe ./build_all.sh && python3 merge_json.py
 
 after_script:
-  - python3 merge_json.py
   - ls dist
   - cat dist/plugins.json
   - cat ~/gitbucket.log
