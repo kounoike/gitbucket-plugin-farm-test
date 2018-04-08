@@ -58,7 +58,7 @@ for target in *; do
     curl -sS http://localhost:8080/api/v3/gitbucket/plugins | jq -e ".[] | select(.id == \"${PLUGIN_ID}\")"
 
     # make json flagment
-    json=$(jq -c . <<EOS
+    json=$( jq -c . <<EOS
 {
     "id": "${PLUGIN_ID}",
     "name": "${PLUGIN_NAME}",
@@ -73,7 +73,8 @@ for target in *; do
     ],
     "default": ${PLUGIN_IS_DEFAULT}
 }
-EOS )
+EOS
+)
     json_array+=( $json )
     popd
 done
