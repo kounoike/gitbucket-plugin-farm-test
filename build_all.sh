@@ -79,4 +79,4 @@ EOS
     popd
 done
 
-echo "[$(IFS=,;echo "${json_array[*]}")]" > dist/plugins.json
+echo "[$(IFS=,;echo "${json_array[*]}")]" > ${TRAVIS_BUILD_DIR}/dist/plugins.json
