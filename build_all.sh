@@ -7,7 +7,7 @@ echo $BUILD_DATE
 . gitbucket_version.sh
 
 mkdir dist
-mkdir json
+json_array=()
 
 cd plugins
 
@@ -58,7 +58,7 @@ for target in *; do
     curl -sS http://localhost:8080/api/v3/gitbucket/plugins | jq -e ".[] | select(.id == \"${PLUGIN_ID}\")"
 
     # make json flagment
-    cat <<EOS > ${TRAVIS_BUILD_DIR}/json/${PLUGIN_ID}.json
+    json=$(jq -c . <<EOS
 {
     "id": "${PLUGIN_ID}",
     "name": "${PLUGIN_NAME}",
@@ -73,6 +73,9 @@ for target in *; do
     ],
     "default": ${PLUGIN_IS_DEFAULT}
 }
-EOS
+EOS )
+    json_array+=( $json )
     popd
 done
+
+echo "[$(IFS=,;echo "${json_array[*]}")]" > dist/plugins.json
