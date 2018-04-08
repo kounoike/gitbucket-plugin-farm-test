@@ -1,21 +1,12 @@
 #!/bin/bash
 
-### build gitbucket-master because plugin list API doesn't released yet
+GITBUCKET_URL=https://github.com/gitbucket/gitbucket/releases/download/latest/gitbucket.war
 
-GITBUCKET_TGZ_URL=https://github.com/gitbucket/gitbucket/archive/master.tar.gz
-GITBUCKET_SRC_DIR=gitbucket-master
+wget $GITBUCKET_URL
 
-wget $GITBUCKET_TGZ_URL
-
-tar zxf $(basename $GITBUCKET_TGZ_URL)
-
-pushd $GITBUCKET_SRC_DIR
-
-sbt executable
-nohup java -jar target/executable/gitbucket.war >$HOME/gitbucket.log 2>&1 < /dev/null &
+nohup java -jar gitbucket.war >$HOME/gitbucket.log 2>&1 < /dev/null &
 
 sleep 10
-cat ~/gitbucket.log
+cat $HOME/gitbucket.log
 
 popd
-
