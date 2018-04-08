@@ -1,7 +1,8 @@
 #!/bin/bash
 
-API_URL=https://api.github.com/repos/gitbucket/gitbucket/releases/latest
-GITBUCKET_URL=$( curl -s $API_URL | jq -r '.assets[] | select(.name == "gitbucket.war") | .url ')
+. gitbucket_version.sh
+
+GITBUCKET_URL=https://github.com/gitbucket/gitbucket/releases/download/${GITBUCKET_VERSION}/gitbucket.war
 
 wget -O $HOME/gitbucket.war $GITBUCKET_URL
 
