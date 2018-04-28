@@ -8,7 +8,19 @@ buildPlugin() {
     target=$1
 
     . $target.sh
-    
+
+    # create repository for test
+    if [ -d ${target}-repo ]; then
+        curl -u root:root -H "Content-type: application/json" -X POST -d "{\"name\": \"$target\"}" http://localhost:8080/api/v3/user/repos
+        pushd ${target}-repo
+        git init .
+        git add .
+        git commit . -m "test"
+        git remote add origin http://localhost:8080/git/root/${target}-repo
+        git push -u origin master
+        popd
+    fi
+
     # get source
     wget -q $PLUGIN_SRC_TGZ_URL
     tar zxf $(basename $PLUGIN_SRC_TGZ_URL)
@@ -46,18 +58,6 @@ buildPlugin() {
     sleep 5 # wait for load plugin
     plugins=$(curl -sS http://localhost:8080/api/v3/gitbucket/plugins)
     echo $plugins | jq -e ".[] | select(.id == \"${PLUGIN_ID}\")" > /dev/null || return
-
-    # create repository for test
-    if [ -d ${target}-repo ]; then
-        curl -u root:root -H "Content-type: application/json" -X POST -d "{\"name\": \"$target\"}" http://localhost:8080/api/v3/user/repos
-        pushd ${target}-repo
-        git init .
-        git add .
-        git commit . -m "test"
-        git remote add origin http://localhost:8080/git/root/${target}-repo
-        git push -u origin master
-        popd
-    fi
 
     # test plugin
     if [ -e ../test.sh ]; then
