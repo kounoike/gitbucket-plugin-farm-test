@@ -95,7 +95,7 @@ for target in *; do
 done
 
 if [ ${#fail_array[*]} != 0 ]; then
-    echo "${fail_array[*]}"
+    echo "Failed to build:${fail_array[*]}"
     exit 1
 else
     echo "[$(IFS=,;echo "${json_array[*]}")]" > ${TRAVIS_BUILD_DIR}/dist/plugins.json
