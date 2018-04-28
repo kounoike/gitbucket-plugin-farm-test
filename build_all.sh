@@ -9,9 +9,6 @@ buildPlugin() {
 
     . $target.sh
     
-    # check PLUGIN_BUILD_ENABLED
-    [ "$PLUGIN_BUILD_ENABLED" != "true" ] && continue
-
     # get source
     wget -q $PLUGIN_SRC_TGZ_URL
     tar zxf $(basename $PLUGIN_SRC_TGZ_URL)
@@ -50,6 +47,18 @@ buildPlugin() {
     plugins=$(curl -sS http://localhost:8080/api/v3/gitbucket/plugins)
     echo $plugins | jq -e ".[] | select(.id == \"${PLUGIN_ID}\")" || return
 
+    # create repository for test
+    if [ -d ${target}-repo ]; then
+        curl -u root:root -H "Content-type: application/json" -X POST -d "{\"name\": \"$target\"}" http://localhost:8080/api/v3/user/repos
+        pushd ${target}-repo
+        git init .
+        git add .
+        git commit . -m "test"
+        git remote add origin http://localhost:8080/git/root/${target}-repo
+        git push -u origin master
+        popd
+    fi
+
     # test plugin
     if [ -e ../test.sh ]; then
         bash ../test.sh >&2 || return
@@ -82,9 +91,17 @@ fail_array=()
 
 cd plugins
 
+git config --global credential.helper "store --file $HOME/.git-credentials"
+echo "http://root:root@localhost%3a8080" > ~/.git-credentials
+
 for target in *; do
     echo $target
     pushd $target
+    
+    # check PLUGIN_BUILD_ENABLED
+    . $target.sh
+    [ "$PLUGIN_BUILD_ENABLED" != "true" ] && continue
+
     json=$(buildPlugin $target)
     if [ -z "$json" ]; then
         fail_array+=( $target )
