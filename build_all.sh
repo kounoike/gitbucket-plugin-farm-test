@@ -103,6 +103,8 @@ for target in *; do
     [ "$PLUGIN_BUILD_ENABLED" != "true" ] && continue
 
     json=$(buildPlugin $target)
+
+    echo "build output: $json"
     if [ -z "$json" ]; then
         fail_array+=( $target )
     else
