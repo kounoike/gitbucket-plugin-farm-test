@@ -7,11 +7,17 @@ addons:
     - npm
 
 cache:
+  apt: true
   directories:
     - "$HOME/.ivy2/cache"
     - "$HOME/.sbt/boot"
     - "$HOME/.sbt/launchers"
     - "$HOME/.coursier"
+
+before_cache:
+  # Cleanup the cached directories to avoid unnecessary cache updates
+  - find $HOME/.ivy2/cache -name "ivydata-*.properties" -print -delete
+  - find $HOME/.sbt        -name "*.lock"               -print -delete
 
 before_script:
   - bash -xe ./run_gitbucket.sh
