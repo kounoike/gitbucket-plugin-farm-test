@@ -1,6 +1,10 @@
 language: scala
 jdk:
 - oraclejdk8
+addons:
+  apt:
+    packages:
+    - npm
 
 cache:
   directories:
