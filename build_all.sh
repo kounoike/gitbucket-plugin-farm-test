@@ -20,7 +20,7 @@ for target in *; do
     [ "$PLUGIN_BUILD_ENABLED" != "true" ] && continue
 
     # get source
-    wget $PLUGIN_SRC_TGZ_URL
+    wget -q $PLUGIN_SRC_TGZ_URL
     tar zxf $(basename $PLUGIN_SRC_TGZ_URL)
     cd $PLUGIN_SRC_DIR
 
