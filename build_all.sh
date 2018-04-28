@@ -40,7 +40,11 @@ for target in *; do
     cat project/build.properties
 
     # build plugin
-    sbt assembly
+    if [ -e build.sh ]; then
+        bash build.sh
+    else
+        sbt assembly
+    fi
 
     # copy artifact
     PLUGINS_DIR=${HOME}/.gitbucket/plugins/
@@ -57,6 +61,11 @@ for target in *; do
     sleep 5 # wait for load plugin
     plugins=$(curl -sS http://localhost:8080/api/v3/gitbucket/plugins)
     echo $plugins | jq -e ".[] | select(.id == \"${PLUGIN_ID}\")"
+
+    # test plugin
+    if [ -e test.sh ];
+        bash test.sh
+    fi
 
     # make json flagment
     json=$( jq -c . <<EOS
