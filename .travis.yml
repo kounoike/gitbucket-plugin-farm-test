@@ -13,6 +13,7 @@ cache:
     - "$HOME/.sbt/boot"
     - "$HOME/.sbt/launchers"
     - "$HOME/.coursier"
+    - "$HOME/.npm"
 
 before_cache:
   # Cleanup the cached directories to avoid unnecessary cache updates
