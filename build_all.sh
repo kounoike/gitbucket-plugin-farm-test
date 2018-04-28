@@ -30,9 +30,9 @@ buildPlugin() {
 
     # build plugin
     if [ -e ../build.sh ]; then
-        bash ../build.sh || return
+        bash ../build.sh >&2 || return
     else
-        sbt assembly || return
+        sbt assembly >&2 || return
     fi
 
     # copy artifact
@@ -52,7 +52,7 @@ buildPlugin() {
 
     # test plugin
     if [ -e ../test.sh ]; then
-        bash ../test.sh || return
+        bash ../test.sh >&2 || return
     fi
 
     # make json flagment
@@ -94,10 +94,10 @@ for target in *; do
     popd
 done
 
-if [ ${#fail_array[*]} == 0 ]; then
+if [ ${#fail_array[*]} != 0 ]; then
     echo "${fail_array[*]}"
     exit 1
+else
+    echo "[$(IFS=,;echo "${json_array[*]}")]" > ${TRAVIS_BUILD_DIR}/dist/plugins.json
+    exit 0
 fi
-
-
-echo "[$(IFS=,;echo "${json_array[*]}")]" > ${TRAVIS_BUILD_DIR}/dist/plugins.json
