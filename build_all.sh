@@ -40,8 +40,8 @@ for target in *; do
     cat project/build.properties
 
     # build plugin
-    if [ -e build.sh ]; then
-        bash build.sh
+    if [ -e ../build.sh ]; then
+        bash ../build.sh
     else
         sbt assembly
     fi
@@ -63,8 +63,8 @@ for target in *; do
     echo $plugins | jq -e ".[] | select(.id == \"${PLUGIN_ID}\")"
 
     # test plugin
-    if [ -e test.sh ]; then
-        bash test.sh
+    if [ -e ../test.sh ]; then
+        bash ../test.sh
     fi
 
     # make json flagment
