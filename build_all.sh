@@ -2,18 +2,11 @@
 
 FARM_BASE_URL=https://github.com/kounoike/gitbucket-plugin-farm-test/releases/download
 BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-echo $BUILD_DATE
-
 . gitbucket_version.sh
 
-mkdir dist
-json_array=()
+buildPlugin() {
+    target=$1
 
-cd plugins
-
-for target in *; do
-    echo $target
-    pushd $target
     . $target.sh
     
     # check PLUGIN_BUILD_ENABLED
@@ -35,15 +28,11 @@ for target in *; do
         sed -i -e "s/sbt.version\\s*=.*/sbt.version = ${SBT_VERSION}/" project/build.properties
     fi
 
-    # debug
-    cat build.sbt
-    cat project/build.properties
-
     # build plugin
     if [ -e ../build.sh ]; then
-        bash ../build.sh
+        bash ../build.sh || return
     else
-        sbt assembly
+        sbt assembly || return
     fi
 
     # copy artifact
@@ -53,8 +42,7 @@ for target in *; do
         cp -f ${PLUGIN_JAR} ${PLUGINS_DIR}
         mv ${PLUGIN_JAR} ${TRAVIS_BUILD_DIR}/dist/
     else
-        ls -R target
-        exit 1
+        return
     fi
 
     # check plugin list api
@@ -64,7 +52,7 @@ for target in *; do
 
     # test plugin
     if [ -e ../test.sh ]; then
-        bash ../test.sh
+        bash ../test.sh || return
     fi
 
     # make json flagment
@@ -85,8 +73,31 @@ for target in *; do
 }
 EOS
 )
-    json_array+=( $json )
+    echo "$json"
+}
+
+mkdir dist
+json_array=()
+fail_array=()
+
+cd plugins
+
+for target in *; do
+    echo $target
+    pushd $target
+    json=$(buildPlugin $target)
+    if [ -z "$json" ]; then
+        fail_array+=( $target )
+    else
+        json_array+=( $json )
+    fi
     popd
 done
+
+if [ ${#fail_array[*]} == 0 ]; then
+    echo "${fail_array[*]}"
+    exit 1
+fi
+
 
 echo "[$(IFS=,;echo "${json_array[*]}")]" > ${TRAVIS_BUILD_DIR}/dist/plugins.json
