@@ -11,7 +11,7 @@ buildPlugin() {
 
     # create repository for test
     if [ -d ${target}-repo ]; then
-        curl -u root:root -H "Content-type: application/json" -X POST -d "{\"name\": \"$target\"}" http://localhost:8080/api/v3/user/repos
+        curl -u root:root -H "Content-type: application/json" -X POST -d "{\"name\": \"${target}-repo\"}" http://localhost:8080/api/v3/user/repos
         pushd ${target}-repo
         git init .
         git add .
