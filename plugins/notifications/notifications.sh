@@ -9,6 +9,8 @@ PLUGIN_ID=notifications
 PLUGIN_NAME="Notifications Plugin"
 PLUGIN_DESCRIPTION="Provides Notifications feature on GitBucket."
 PLUGIN_VERSION=1.5.0
+PLUGIN_LICENSE="Apache License 2.0"
+
 #PLUGIN_TAG_NAME=${PLUGIN_VERSION}
 PLUGIN_TAG_NAME=master
 

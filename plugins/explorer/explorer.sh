@@ -9,6 +9,8 @@ PLUGIN_ID=explorer
 PLUGIN_NAME="Project explorer Plugin"
 PLUGIN_DESCRIPTION="Explore Files from the file tree in the repository"
 PLUGIN_VERSION=6.0.0
+PLUGIN_LICENSE="None"
+
 PLUGIN_TAG_NAME=${PLUGIN_VERSION}
 
 PLUGIN_IS_DEFAULT=false

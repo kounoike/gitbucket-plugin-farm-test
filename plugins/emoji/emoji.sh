@@ -9,6 +9,8 @@ PLUGIN_ID=emoji
 PLUGIN_NAME="Emoji Plugin"
 PLUGIN_DESCRIPTION="Provides Emoji support for GitBucket."
 PLUGIN_VERSION=4.5.0
+PLUGIN_LICENSE="None"
+
 #PLUGIN_TAG_NAME=${PLUGIN_VERSION}
 PLUGIN_TAG_NAME=master
 

@@ -9,6 +9,8 @@ PLUGIN_ID=pages
 PLUGIN_NAME="Pages Plugin"
 PLUGIN_DESCRIPTION="Project pages for GitBucket"
 PLUGIN_VERSION=1.7.0
+PLUGIN_LICENSE="Apache License 2.0"
+
 #PLUGIN_TAG_NAME=${PLUGIN_VERSION}
 PLUGIN_TAG_NAME=master
 

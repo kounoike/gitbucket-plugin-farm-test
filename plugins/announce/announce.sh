@@ -9,6 +9,8 @@ PLUGIN_ID=announce
 PLUGIN_NAME="Announce Plugin"
 PLUGIN_DESCRIPTION="Provide announces for gitbucket users and groups"
 PLUGIN_VERSION=1.10.0
+PLUGIN_LICENSE="None"
+
 PLUGIN_TAG_NAME=${PLUGIN_VERSION}
 
 PLUGIN_IS_DEFAULT=false

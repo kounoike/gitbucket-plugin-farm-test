@@ -9,6 +9,8 @@ PLUGIN_ID=h2-backup
 PLUGIN_NAME="H2 Database Backup Plugin"
 PLUGIN_DESCRIPTION="Allows to export the H2 database of GitBucket"
 PLUGIN_VERSION=1.6.0
+PLUGIN_LICENSE="None"
+
 PLUGIN_TAG_NAME=${PLUGIN_VERSION}
 
 PLUGIN_IS_DEFAULT=false

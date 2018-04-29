@@ -9,6 +9,8 @@ PLUGIN_ID=maven-repository
 PLUGIN_NAME="Maven Repsitory Plugin"
 PLUGIN_DESCRIPTION="Host Maven repository on GitBucket."
 PLUGIN_VERSION=1.2.1
+PLUGIN_LICENSE="None"
+
 PLUGIN_TAG_NAME=${PLUGIN_VERSION}
 
 PLUGIN_IS_DEFAULT=false
