@@ -4,7 +4,7 @@ This repository makes possible to install plugins from remote repository and les
 
 # for plugin developper
 
-## adding new plugin
+## adding your plugin
 
 This farm requires that plugin uses [sbt-gitbucket-plugin](https://github.com/gitbucket/sbt-gitbucket-plugin). Please use it and create tag with plugin version.
 
@@ -19,6 +19,7 @@ Please create PR to this repository. it contains `plugins/_plugin_name_/_plugin_
 |`PLUGIN_NAME`|`PluginName` in `Plugin.scala`|Gist Plugin|
 |`PLUGIN_DESCRIPTION`|`description` in `Plugin.scala`|Provides Gist feature on GitBucket.|
 |`PLUGIN_VERSION`|plugin version|4.12.0|
+|`PLUGIN_LICENSE`|plugin license|Apache License 2.0|
 |`PLUGIN_TAG_NAME`|git tag name for this version|4.12.0|
 |`PLUGIN_IS_DEFAULT`|true if this plugin as default install|false|
 |`PLUGIN_REPOSITORY_OWNER`|github project owner|gitbucket|
@@ -31,6 +32,14 @@ Please create PR to this repository. it contains `plugins/_plugin_name_/_plugin_
 ## update your plugin
 
 Please create new tag in your repository and create PR to this repository with update `PLUGIN_VERSION`, `PLUGIN_TAG_NAME` etc.
+
+## custom build step
+
+add `build.sh`. see [explorer plugin](plugins/explorer/)
+
+## custom test step
+
+add `test.sh`. see [explorer plugin](plugins/explorer/)
 
 # for GitBucket developper
 
