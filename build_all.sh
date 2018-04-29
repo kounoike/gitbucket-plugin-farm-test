@@ -11,6 +11,7 @@ buildPlugin() {
 
     # create repository for test
     if [ -d ${target}-repo ]; then
+        (
         curl -u root:root -H "Content-type: application/json" -X POST -d "{\"name\": \"${target}-repo\"}" http://localhost:8080/api/v3/user/repos
         pushd ${target}-repo
         git init .
@@ -19,6 +20,7 @@ buildPlugin() {
         git remote add origin http://localhost:8080/git/root/${target}-repo
         git push -u origin master
         popd
+        ) >&2
     fi
 
     # get source
