@@ -22,9 +22,16 @@ buildPlugin() {
     fi
 
     # get source
-    wget -q $PLUGIN_SRC_TGZ_URL
-    tar zxf $(basename $PLUGIN_SRC_TGZ_URL)
-    cd $PLUGIN_SRC_DIR
+    if [ $PLUGIN_TAG_NAME == "master" ]; then
+        wget -q $PLUGIN_SRC_TGZ_URL
+        tar zxf $(basename $PLUGIN_SRC_TGZ_URL)
+        cd $PLUGIN_SRC_DIR
+    else
+        tgz_cache=$HOME/Downloads/${PLUGIN_ID}-${PLUGIN_TAG_NAME}.tar.gz
+        wget -O $tgz_cache -q $PLUGIN_SRC_TGZ_URL
+        tar zxf $tgz_cache
+        cd $PLUGIN_SRC_DIR
+    fi
 
     # change gitbucketVersion
     sed -i -e "s/\\s*gitbucketVersion\\s*:=.*/gitbucketVersion := \"${GITBUCKET_VERSION}\"/" build.sbt
@@ -89,7 +96,7 @@ EOS
     echo "$json"
 }
 
-mkdir dist
+mkdir -p dist
 json_array=()
 fail_array=()
 
