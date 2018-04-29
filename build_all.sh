@@ -88,6 +88,9 @@ mkdir -p dist
 json_array=()
 fail_array=()
 
+git config --global credential.helper "store --file $HOME/.git-credentials"
+echo "http://root:root@localhost%3a8080" > ~/.git-credentials
+
 # create repository for test
 (
     curl -u root:root -H "Content-type: application/json" -X POST -d "{\"name\": \"repo\"}" http://localhost:8080/api/v3/user/repos || exit 1
@@ -101,9 +104,6 @@ fail_array=()
 ) >&2 || exit 1
 
 cd plugins
-
-git config --global credential.helper "store --file $HOME/.git-credentials"
-echo "http://root:root@localhost%3a8080" > ~/.git-credentials
 
 for target in *; do
     echo $target
