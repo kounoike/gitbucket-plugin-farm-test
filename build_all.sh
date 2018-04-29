@@ -57,7 +57,11 @@ buildPlugin() {
     # check plugin list api
     sleep 5 # wait for load plugin
     plugins=$(curl -sS http://localhost:8080/api/v3/gitbucket/plugins)
-    echo $plugins | jq -e ".[] | select(.id == \"${PLUGIN_ID}\")" > /dev/null || return
+    echo $plugins | jq -e ".[] | select(.id == \"${PLUGIN_ID}\")" > /dev/null
+    if [ $? != 0 ] ; then
+        rm -f ${PLUGINS_DIR}/$(basename ${PLUGIN_JAR})
+        return
+    fi
 
     # test plugin
     if [ -e ../test.sh ]; then
