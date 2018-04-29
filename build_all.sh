@@ -15,7 +15,8 @@ buildPlugin() {
         curl -u root:root -H "Content-type: application/json" -X POST -d "{\"name\": \"${target}-repo\"}" http://localhost:8080/api/v3/user/repos
         pushd ${target}-repo
         git init .
-        git commit . -a -m "test"
+        git add .
+        git commit . -m "test"
         git remote add origin http://localhost:8080/git/root/${target}-repo
         git push -u origin master
         popd
