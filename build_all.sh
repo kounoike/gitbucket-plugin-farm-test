@@ -90,17 +90,15 @@ fail_array=()
 
 # create repository for test
 (
-    curl -u root:root -H "Content-type: application/json" -X POST -d "{\"name\": \"repo\"}" http://localhost:8080/api/v3/user/repos
+    curl -u root:root -H "Content-type: application/json" -X POST -d "{\"name\": \"repo\"}" http://localhost:8080/api/v3/user/repos || exit 1
     pushd repo
     git init .
     git add .
     git commit . -m "test"
     git remote add origin http://localhost:8080/git/root/repo
-    git push -u origin master
+    git push -u origin master || exit 1
     popd
-) >&2
-
-
+) >&2 || exit 1
 
 cd plugins
 

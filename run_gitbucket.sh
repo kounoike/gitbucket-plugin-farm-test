@@ -10,6 +10,6 @@ fi
 
 nohup java -jar $HOME/Downloads/gitbucket.war >$HOME/gitbucket.log 2>&1 < /dev/null &
 
-while grep "Started ServerConnector" $HOME/gitbucket.log; do
+while ! grep "Started ServerConnector" $HOME/gitbucket.log; do
     sleep 1
 done
