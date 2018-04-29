@@ -9,20 +9,6 @@ buildPlugin() {
 
     . $target.sh
 
-    # create repository for test
-    if [ -d ${target}-repo ]; then
-        (
-        curl -u root:root -H "Content-type: application/json" -X POST -d "{\"name\": \"${target}-repo\"}" http://localhost:8080/api/v3/user/repos
-        pushd ${target}-repo
-        git init .
-        git add .
-        git commit . -m "test"
-        git remote add origin http://localhost:8080/git/root/${target}-repo
-        git push -u origin master
-        popd
-        ) >&2
-    fi
-
     # get source
     if [ $PLUGIN_TAG_NAME == "master" ]; then
         wget -q $PLUGIN_SRC_TGZ_URL
@@ -101,6 +87,20 @@ EOS
 mkdir -p dist
 json_array=()
 fail_array=()
+
+# create repository for test
+(
+    curl -u root:root -H "Content-type: application/json" -X POST -d "{\"name\": \"repo\"}" http://localhost:8080/api/v3/user/repos
+    pushd ${target}-repo
+    git init .
+    git add .
+    git commit . -m "test"
+    git remote add origin http://localhost:8080/git/root/repo
+    git push -u origin master
+    popd
+) >&2
+
+
 
 cd plugins
 

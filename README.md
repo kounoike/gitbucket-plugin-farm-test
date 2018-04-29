@@ -41,6 +41,8 @@ add `build.sh`. see [explorer plugin](plugins/explorer/)
 
 add `test.sh`. see [explorer plugin](plugins/explorer/)
 
+If you want to test some files in repository, please add such files to `repo` directory. Script pushes this directory to `root/repo` project.
+
 # for GitBucket developper
 
 When new GitBucket version released, please change `gitbucket_version.sh` and make same tag.
