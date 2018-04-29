@@ -10,6 +10,4 @@ fi
 
 nohup java -jar $HOME/Downloads/gitbucket.war >$HOME/gitbucket.log 2>&1 < /dev/null &
 
-grep --help
-
 tail -f $HOME/gitbucket.log | grep --max-count=1 --line-buffered "Started ServerConnector"
