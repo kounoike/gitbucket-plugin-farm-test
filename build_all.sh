@@ -91,7 +91,7 @@ fail_array=()
 # create repository for test
 (
     curl -u root:root -H "Content-type: application/json" -X POST -d "{\"name\": \"repo\"}" http://localhost:8080/api/v3/user/repos
-    pushd ${target}-repo
+    pushd repo
     git init .
     git add .
     git commit . -m "test"
