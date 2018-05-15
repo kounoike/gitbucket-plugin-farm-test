@@ -1,3 +1,10 @@
 GITBUCKET_VERSION=4.23.1
 SCALA_VERSION=2.12.4
 SBT_VERSION=1.1.1
+
+#if [ "${TRAVIS_EVENT_TYPE}" = "cron" ]; then
+if true; then
+    GITBUCKET_USE_MASTER=yes
+else
+    GITBUCKET_USE_MASTER=no
+fi
