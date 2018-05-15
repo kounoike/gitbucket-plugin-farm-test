@@ -4,7 +4,7 @@
 
 echo EVENT_TYPE:${TRAVIS_EVENT_TYPE}
 
-if [ "$GITBUCKET_USE_MASTE" = "yes" ]; then
+if [ "$GITBUCKET_USE_MASTER" = "yes" ]; then
     GITBUCKET_TGZ_URL=https://github.com/gitbucket/gitbucket/archive/master.tar.gz
     GITBUCKET_SRC_DIR=gitbucket-master
 
