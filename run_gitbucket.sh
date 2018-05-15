@@ -2,6 +2,8 @@
 
 . gitbucket_version.sh
 
+echo EVENT_TYPE:${TRAVIS_EVENT_TYPE}
+
 GITBUCKET_URL=https://github.com/gitbucket/gitbucket/releases/download/${GITBUCKET_VERSION}/gitbucket.war
 
 if [ ! -e $HOME/Downloads/gitbucket.war ]; then
