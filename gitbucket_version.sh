@@ -17,4 +17,5 @@ if [ "${TRAVIS_EVENT_TYPE}" = "cron" ]; then
     popd
 else
     GITBUCKET_USE_MASTER=no
+    rm -rf $HOME/.ivy2/local
 fi
