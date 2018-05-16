@@ -8,7 +8,7 @@ PLUGIN_REPOSITORY_NAME=gitbucket-ci-plugin
 PLUGIN_ID=ci
 PLUGIN_NAME="CI Plugin"
 PLUGIN_DESCRIPTION="This plugin adds simple CI functionality to GitBucket."
-PLUGIN_VERSION=1.4.0
+PLUGIN_VERSION=1.6.0
 PLUGIN_LICENSE="None"
 
 PLUGIN_TAG_NAME=${PLUGIN_VERSION}
