@@ -54,6 +54,7 @@ buildPlugin() {
     plugins=$(curl -sS http://localhost:8080/api/v3/gitbucket/plugins)
     echo $plugins | jq -e ".[] | select(.id == \"${PLUGIN_ID}\")" > /dev/null
     if [ $? != 0 ] ; then
+        echo "plugin doesn't loaded?" >&2
         rm -f ${PLUGINS_DIR}/$(basename ${PLUGIN_JAR})
         return
     fi
